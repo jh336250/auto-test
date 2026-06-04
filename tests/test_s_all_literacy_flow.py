@@ -3,7 +3,7 @@
 =================================================================
 
 BrowserStack App Automate 버전
-  - 디바이스: Samsung Galaxy Tab A7 11 / Android 16.0
+  - 디바이스: Samsung Galaxy Tab S11 / Android 16.0
   - Appium 서버: BrowserStack hub
 
 환경변수 (GitHub Secrets):
@@ -77,7 +77,7 @@ def driver():
 
     options = UiAutomator2Options()
     options.platform_name = "Android"
-    options.device_name = "Samsung Galaxy Tab A7"
+    options.device_name = "Samsung Galaxy Tab S11"
     options.platform_version = "16.0"
 
     # BrowserStack App Automate 필수 설정
