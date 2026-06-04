@@ -24,8 +24,9 @@ jobs:
           pip install \
             pytest \
             Appium-Python-Client \
-            selenium
-
+            selenium \
+            numpy
+            
       - name: Run Appium tests on BrowserStack
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
