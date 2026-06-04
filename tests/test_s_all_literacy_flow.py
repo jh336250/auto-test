@@ -517,6 +517,8 @@ def handle_guide_popup(drv, popup_wait=3):
 
 
 def run_training(drv, tc_label, proceed_next=True):
+    handle_guide_popup(drv, popup_wait=5)
+
     screen = wait_id(drv, "layout_learning_fragment", timeout=DEFAULT_TIMEOUT)
     assert screen is not None, f"{tc_label} 훈련 화면(layout_learning_fragment) 미노출"
     print(f"  {tc_label} 훈련 화면 노출 확인")
