@@ -739,8 +739,6 @@ class TestAllLiteracyFlow:
     def test_13_back_to_main_after_study(self, driver):
         print("\n[TC-13] btnOpen → btn_exit → 메인 복귀")
 
-        back_to_main(driver)
-
         click_full_id(
             driver,
             "com.kyowon.literacy.store:id/btnOpen",
