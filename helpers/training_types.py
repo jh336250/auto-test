@@ -132,7 +132,7 @@ def _find_all_matches(drv, img_filename, threshold=0.83):
     return matches
 
 
-def _find_best_match(drv, img_filename, threshold=0.82):
+def _find_best_match(drv, img_filename, threshold=0.60):
     img_path = os.path.join(IMG_DIR, img_filename)
     if not os.path.exists(img_path):
         print(f"  ⚠️ 이미지 파일 없음: {img_path}")
@@ -405,7 +405,7 @@ def _handle_display_reading(drv, name):
             popup_close.click()
             print("  ✅ 팝업 닫기(btn_popup_close) 클릭")
             time.sleep(0.5)
-    pos = _find_best_match(drv, "first_13_point.png", threshold=0.82)
+    pos = _find_best_match(drv, "first_13_point.png", threshold=0.60)
     if pos:
         _drag_right(drv, pos[0], pos[1])
     else:
@@ -439,7 +439,7 @@ def _handle_image_tap_loop(drv, name, img_files):
             return
         tapped = False
         for img_file in img_files:
-            matches = _find_all_matches(drv, img_file, threshold=0.82)
+            matches = _find_all_matches(drv, img_file, threshold=0.60)
             for (cx, cy) in matches:
                 _tap(drv, cx, cy)
                 print(f"  ✅ 탭: ({cx},{cy}) [{img_file}]")
@@ -455,7 +455,7 @@ def _handle_image_drag_right(drv, name, img_file):
     print(f"  ℹ️ [{name}] 처리: 이미지 우측 드래그형")
     pos = None
     for _ in range(15):
-        pos = _find_best_match(drv, img_file, threshold=0.82)
+        pos = _find_best_match(drv, img_file, threshold=0.60)
         if pos:
             break
         time.sleep(2.0)
