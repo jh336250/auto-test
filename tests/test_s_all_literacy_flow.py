@@ -102,7 +102,8 @@ def driver():
         "idleTimeout": 300,
     })
 
-    drv = webdriver.Remote(APPIUM_SERVER, options=options)
+    bs_url = f"https://{bs_username}:{bs_access_key}@hub-cloud.browserstack.com/wd/hub"
+    drv = webdriver.Remote(bs_url, options=options)
     print("\n드라이버 연결 성공 (BrowserStack)")
     yield drv
     drv.quit()
