@@ -109,12 +109,10 @@ def driver():
         password=bs_access_key,
     )
     drv = webdriver.Remote(
-        command_executor=AppiumConnection(
-            bs_hub_url,
-            client_config=client_config
-        ),
+        command_executor=AppiumConnection(client_config=client_config),
         options=options
     )
+
     print("\n드라이버 연결 성공 (BrowserStack)")
     yield drv
     drv.quit()
