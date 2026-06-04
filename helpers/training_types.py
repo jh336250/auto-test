@@ -157,7 +157,8 @@ def _tap(drv, x, y):
     try:
         drv.execute_script("mobile: clickGesture", {"x": int(x), "y": int(y)})
     except Exception:
-        drv.execute_script("mobile: tap", {"x": int(x), "y": int(y)})
+        from appium.webdriver.common.touch_action import TouchAction
+        TouchAction(drv).tap(x=int(x), y=int(y)).perform()
     time.sleep(0.3)
 
 
