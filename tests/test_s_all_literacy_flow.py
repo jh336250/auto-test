@@ -199,8 +199,7 @@ def tap_element_center(drv, el, label="요소"):
     try:
         drv.execute_script("mobile: clickGesture", {"x": x, "y": y})
     except Exception:
-        from appium.webdriver.common.touch_action import TouchAction
-        TouchAction(drv).tap(x=x, y=y).perform()
+        drv.execute_script("mobile: longClickGesture", {"x": x, "y": y, "duration": 100})
     print(f"  {label} 좌표 탭 ({x}, {y})")
     time.sleep(CLICK_DELAY)
 
