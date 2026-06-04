@@ -88,6 +88,7 @@ def driver():
     options.set_capability("noReset", False)
     options.set_capability("newCommandTimeout", 300)
     options.set_capability("autoGrantPermissions", True)
+    options.set_capability("orientation", "LANDSCAPE") 
 
     options.set_capability("bstack:options", {
         "userName": bs_username,
@@ -100,6 +101,7 @@ def driver():
         "video": True,
         "networkLogs": True,
         "idleTimeout": 300,
+        "deviceOrientation": "landscape",
     })
 
     bs_hub_url = "https://hub-cloud.browserstack.com/wd/hub"
