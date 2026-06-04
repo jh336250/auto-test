@@ -19,16 +19,8 @@ jobs:
           python-version: '3.11'
 
       - name: Install Python dependencies
-        run: |
-          pip install --upgrade pip
-          pip install \
-            pytest \
-            Appium-Python-Client \
-            selenium \
-            numpy \
-            opencv-python-headless
-      
-            
+        run: pip install pytest Appium-Python-Client selenium numpy opencv-python-headless
+
       - name: Run Appium tests on BrowserStack
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
@@ -36,11 +28,7 @@ jobs:
           BROWSERSTACK_APP_URL: ${{ secrets.BROWSERSTACK_APP_URL }}
           TEST_ID: ${{ secrets.TEST_ID }}
           TEST_PW: ${{ secrets.TEST_PW }}
-        run: |
-          pytest tests/test_s01_login.py \
-            -v -s \
-            --tb=short \
-            --junitxml=test-results/results.xml
+        run: pytest tests/test_s01_login.py -v -s --tb=short --junitxml=test-results/results.xml
 
       - name: Upload test results
         if: always()
