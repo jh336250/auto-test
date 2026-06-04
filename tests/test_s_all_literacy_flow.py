@@ -28,9 +28,9 @@ import re
 import sys
 import time
 import pytest
+
 from appium.webdriver.appium_connection import AppiumConnection
 from selenium.webdriver.remote.client_config import ClientConfig
-
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
@@ -43,7 +43,6 @@ from selenium.common.exceptions import (
 )
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-
 from config import TEST_ID, TEST_PW
 from helpers.training_types import handle_training
 
@@ -51,8 +50,6 @@ from helpers.training_types import handle_training
 # ──────────────────────────────────────────────────────────
 # BrowserStack / Appium 설정
 # ──────────────────────────────────────────────────────────
-APPIUM_SERVER = "https://hub-cloud.browserstack.com/wd/hub"
-
 PKG = "com.kyowon.literacy.store"
 MAIN_ACTIVITY = "com.kyowon.literacy.ui.intro.activity.IntroActivity"
 
@@ -113,7 +110,6 @@ def driver():
         command_executor=AppiumConnection(client_config=client_config),
         options=options
     )
-
     print("\n드라이버 연결 성공 (BrowserStack)")
     yield drv
     drv.quit()
@@ -294,7 +290,6 @@ def handle_permission_guide_popup(drv):
         print("  시스템 권한 팝업은 autoGrantPermissions=True로 자동 허용")
         time.sleep(1.2)
         return True
-
     print("  권한 안내 팝업 없음 → 건너뜀")
     return False
 
@@ -323,7 +318,6 @@ def login_if_needed(drv):
 
     assert click_id(drv, "btn_login", "로그인 버튼(btn_login)", timeout=DEFAULT_TIMEOUT)
     handle_loading(drv)
-
     return True
 
 
@@ -334,7 +328,6 @@ def handle_welcome_popup_if_any(drv):
         if click_id(drv, "btn_alert_positive", "팝업 확인(btn_alert_positive)", timeout=5):
             handle_loading(drv)
             return True
-
     print("  로그인 성공 팝업 없음 → 건너뜀")
     return False
 
@@ -351,7 +344,6 @@ def handle_tutorial_if_any(drv):
             if click_id(drv, "btn_start", "튜토리얼 시작(btn_start)", timeout=1):
                 break
         return True
-
     print("  튜토리얼 없음 → 건너뜀")
     return False
 
@@ -746,6 +738,8 @@ class TestAllLiteracyFlow:
 
     def test_13_back_to_main_after_study(self, driver):
         print("\n[TC-13] btnOpen → btn_exit → 메인 복귀")
+
+        back_to_main(driver)
 
         click_full_id(
             driver,
