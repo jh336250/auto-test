@@ -88,7 +88,6 @@ def driver():
     options.set_capability("noReset", False)
     options.set_capability("newCommandTimeout", 300)
     options.set_capability("autoGrantPermissions", True)
-    options.set_capability("orientation", "LANDSCAPE") 
 
     options.set_capability("bstack:options", {
         "userName": bs_username,
