@@ -25,7 +25,9 @@ jobs:
             pytest \
             Appium-Python-Client \
             selenium \
-            numpy
+            numpy \
+            opencv-python-headless
+      
             
       - name: Run Appium tests on BrowserStack
         env:
