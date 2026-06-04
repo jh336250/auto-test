@@ -3,7 +3,7 @@
 =================================================================
 
 BrowserStack App Automate 버전
-  - 디바이스: Samsung Galaxy Tab A7 11 / Android 16.0
+  - 디바이스: Samsung Galaxy Tab S11 / Android 16.0
   - Appium 서버: BrowserStack hub
 
 환경변수 (GitHub Secrets):
@@ -28,6 +28,8 @@ import re
 import sys
 import time
 import pytest
+from appium.webdriver.appium_connection import AppiumConnection
+from selenium.webdriver.remote.client_config import ClientConfig
 
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
@@ -77,10 +79,9 @@ def driver():
 
     options = UiAutomator2Options()
     options.platform_name = "Android"
-    options.device_name = "Samsung Galaxy Tab A7"
+    options.device_name = "Samsung Galaxy Tab S11"
     options.platform_version = "16.0"
 
-    # BrowserStack App Automate 필수 설정
     options.set_capability("app", bs_app_url)
     options.set_capability("appPackage", PKG)
     options.set_capability("appActivity", MAIN_ACTIVITY)
@@ -88,7 +89,6 @@ def driver():
     options.set_capability("newCommandTimeout", 300)
     options.set_capability("autoGrantPermissions", True)
 
-    # BrowserStack 전용 옵션
     options.set_capability("bstack:options", {
         "userName": bs_username,
         "accessKey": bs_access_key,
@@ -100,9 +100,20 @@ def driver():
         "video": True,
         "networkLogs": True,
         "idleTimeout": 300,
+        "deviceOrientation": "landscape",
     })
 
-    drv = webdriver.Remote(APPIUM_SERVER, options=options)
+    bs_hub_url = "https://hub-cloud.browserstack.com/wd/hub"
+    client_config = ClientConfig(
+        remote_server_addr=bs_hub_url,
+        username=bs_username,
+        password=bs_access_key,
+    )
+    drv = webdriver.Remote(
+        command_executor=AppiumConnection(client_config=client_config),
+        options=options
+    )
+
     print("\n드라이버 연결 성공 (BrowserStack)")
     yield drv
     drv.quit()
