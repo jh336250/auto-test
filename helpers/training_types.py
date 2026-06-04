@@ -154,12 +154,10 @@ def _find_best_match(drv, img_filename, threshold=0.60):
 
 
 def _tap(drv, x, y):
-    """
-    지정 좌표 탭.
-    mobile: clickGesture 사용 (W3C 호환).
-    numpy int64 → Python int 변환 (JSON 직렬화 오류 방지).
-    """
-    drv.execute_script("mobile: clickGesture", {"x": int(x), "y": int(y)})
+    try:
+        drv.execute_script("mobile: clickGesture", {"x": int(x), "y": int(y)})
+    except Exception:
+        drv.execute_script("mobile: tap", {"x": int(x), "y": int(y)})
     time.sleep(0.3)
 
 
