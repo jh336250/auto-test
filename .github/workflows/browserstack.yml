@@ -37,7 +37,7 @@ jobs:
           TEST_ID: ${{ secrets.TEST_ID }}
           TEST_PW: ${{ secrets.TEST_PW }}
         run: |
-          pytest tests/test_s_all_literacy_flow.py \
+          pytest tests/test_s01_login.py \    
             -v -s \
             --tb=short \
             --junitxml=test-results/results.xml
