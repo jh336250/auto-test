@@ -30,7 +30,8 @@ jobs:
           TEST_ID: ${{ secrets.TEST_ID }}
           TEST_PW: ${{ secrets.TEST_PW }}
 #       run: pytest tests/test_s_all_literacy_flow.py -v -s --tb=short --junitxml=test-results/results.xml
-        run: pytest tests/test_s01_login.py -v -s --tb=short --junitxml=test-results/results.xml
+#       run: pytest tests/test_s01_login.py -v -s --tb=short --junitxml=test-results/results.xml
+        run: browserstack-sdk pytest tests/test_s01_login.py -v -s --tb=short
 
       - name: Upload test results
         if: always()
