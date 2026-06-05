@@ -3,12 +3,6 @@ accessKey: ${BROWSERSTACK_ACCESS_KEY}
 
 app: ${BROWSERSTACK_APP_URL}
 
-platforms:
-  - platformName: android
-    deviceName: Samsung Galaxy Tab S11
-    platformVersion: 16.0
-    deviceOrientation: landscape
-
 framework: pytest
 
 browserstackLocal: false
