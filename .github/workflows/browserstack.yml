@@ -19,7 +19,8 @@ jobs:
           python-version: '3.11'
 
       - name: Install Python dependencies
-        run: pip install pytest Appium-Python-Client selenium numpy opencv-python-headless
+        run: pip install pytest Appium-Python-Client selenium numpy opencv-python-headless browserstack-sdk
+        
 
       - name: Run Appium tests on BrowserStack
         env:
