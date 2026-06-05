@@ -80,7 +80,6 @@ def driver():
         "networkLogs":     True,
         "idleTimeout":     300,
         "deviceOrientation": "landscape",
-        "sdkVersion": "1.0",
     })
 
     client_config = ClientConfig(
